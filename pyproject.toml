@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "test-proj"
+version = "0.1.0"
+description = ""
+authors = ["Dmitriy Zemlyankin <ygyshka0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.2"
+flask-migrate = "^4.0.5"
+flask-sqlalchemy = "^3.1.1"
+python-dotenv = "^1.0.1"
+ipython = "^8.22.1"
+requests = "^2.31.0"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
