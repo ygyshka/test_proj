@@ -8,8 +8,10 @@ load_dotenv()
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:2112@localhost:5432/music_shop"
+# app.config['SQLALCHEMY_DATABASE_URI'] = (f"postgresql://{os.getenv('POSTGRES_USER')}:"
+#                                          f"{os.getenv('PG_PASS')}@localhost:5432/music_shop")
 app.config['SQLALCHEMY_DATABASE_URI'] = (f"postgresql://{os.getenv('POSTGRES_USER')}:"
-                                         f"{os.getenv('PG_PASS')}@localhost:5432/music_shop")
+                                         f"{os.getenv('POSTGRES_PASSWORD')}@dbserver:5432/music_shop")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

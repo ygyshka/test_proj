@@ -2,12 +2,12 @@ version: '3.11'
 
 services:
 
-  db:
+  dbserver:
     image: postgres
     env_file:
       - .env
     volumes:
-      - pg_data:/var/lib/postgresql/data/pgdata
+      - pg_data2:/var/lib/postgresql/data2/pgdata2
     ports:
       - '5433:5432'
 
@@ -20,14 +20,14 @@ services:
   app:
     build: .
     tty: true
-    command:  bash -c "flask db init && flask db migrate && flask db upgrade && python apps.py"
+    command:  bash -c "ls && flask db upgrade && python app.py"
     volumes:
       - .:/code
     ports:
       - '8000:8000'
     depends_on:
-      db:
+      dbserver:
         condition: service_healthy
 
 volumes:
-  pg_data:
+  pg_data2:
