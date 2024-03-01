@@ -8,8 +8,12 @@ load_dotenv()
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:2112@localhost:5432/music_shop"
+
+# строка подключения приложения к локальной бд
 # app.config['SQLALCHEMY_DATABASE_URI'] = (f"postgresql://{os.getenv('POSTGRES_USER')}:"
 #                                          f"{os.getenv('PG_PASS')}@localhost:5432/music_shop")
+
+# строка подключения приложения внутри докера к его контейнерам
 app.config['SQLALCHEMY_DATABASE_URI'] = (f"postgresql://{os.getenv('POSTGRES_USER')}:"
                                          f"{os.getenv('POSTGRES_PASSWORD')}@dbserver:5432/music_shop")
 db = SQLAlchemy(app)
@@ -101,3 +105,4 @@ def hello_world():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000, host='localhost')
+    # app.run(debug=True)
