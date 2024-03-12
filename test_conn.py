@@ -25,3 +25,19 @@ with engine.connect() as conn:
     version = result.fetchone()[0]
 
     print("PostgreSQL version:", version)
+
+with engine.connect() as conn:
+    # SQL запрос для получения информации о сервере и порте
+    query = text("SELECT inet_server_addr() AS server_address, inet_server_port() AS server_port;")
+
+    # Выполняем запрос
+    result = conn.execute(query)
+
+    # Получаем результат
+    server_info = result.fetchone()
+
+    server_address = server_info[0]
+    server_port = server_info[1]
+
+    print("Server Address:", server_address)
+    print("Server Port:", server_port)

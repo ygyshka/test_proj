@@ -97,6 +97,8 @@ def buy_one_inst(inst_id):
     db.session.commit()
     return {"message": f"instrument {inst.name} has been bought successfully."}
 
+#  накинуть сюда аутентификацию и авторизацию, получать jwt token который использоваться на всех ендпоинтах, то есть сделать проверку на права (permissions)
+
 
 @app.route('/')
 def hello_world():
@@ -104,5 +106,4 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000, host='localhost')
-    # app.run(debug=True)
+    app.run(debug=True, port=8000, host='0.0.0.0')

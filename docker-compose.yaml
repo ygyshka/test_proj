@@ -12,7 +12,7 @@ services:
       - '5433:5432'
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -20,9 +20,11 @@ services:
   app:
     build: .
     tty: true
-    command:  bash -c "ls && flask db upgrade && python app.py"
+    command:  bash -c "ls && flask db init && flask db migrate && flask db upgrade && python app.py"
     volumes:
       - .:/code
+    extra_hosts:
+      - "localhost:127.0.0.1"
     ports:
       - '8000:8000'
     depends_on:
